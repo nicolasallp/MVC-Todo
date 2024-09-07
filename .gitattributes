@@ -65,4 +65,5 @@
 # Custom
 *.cs     linguist-language=csharp
 *.cshtml     linguist-language=csharp
-*.razor  linguist-language=csharp
+output.css  linguist-language=false
+input.output.css  linguist-language=false
