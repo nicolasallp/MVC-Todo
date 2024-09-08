@@ -28,5 +28,14 @@ namespace mvc_todo.Controllers
             //}
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            Todo todo = _db.Todos.Find(id);
+            _db.Todos.Remove(todo);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
