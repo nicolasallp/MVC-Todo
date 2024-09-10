@@ -21,11 +21,11 @@ namespace mvc_todo.Controllers
         [HttpPost]
         public IActionResult Create(Todo todo)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 _db.Todos.Add(todo);
                 _db.SaveChanges();
-            //}
+            }
             return RedirectToAction("Index");
         }
 
