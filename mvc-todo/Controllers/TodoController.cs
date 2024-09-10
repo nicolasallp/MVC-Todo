@@ -6,7 +6,7 @@ namespace mvc_todo.Controllers
 {
     public class TodoController : Controller
     {
-        ApplicationDbContext _db;
+        public static ApplicationDbContext _db;
         public TodoController(ApplicationDbContext db)
         {
             _db = db;
@@ -14,8 +14,8 @@ namespace mvc_todo.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Todo> todoList = _db.Todos;
-            return View(todoList);
+            Todo todo = new Todo();
+            return View(todo);
         }
 
         [HttpPost]
@@ -29,11 +29,19 @@ namespace mvc_todo.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
         public IActionResult Delete(int id)
         {
             Todo todo = _db.Todos.Find(id);
             _db.Todos.Remove(todo);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, Todo todo)
+        {
+            Todo oldTodo = _db.Todos.Find(id);
+            oldTodo.Title = todo.Title;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
