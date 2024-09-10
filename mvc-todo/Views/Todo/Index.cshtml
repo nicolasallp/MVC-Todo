@@ -13,13 +13,15 @@
 <div class="mt-4">
         @foreach (Todo todo in Model)
         {
-        <div class="bg-[#253d73] flex justify-between mb-3">
-                <div class="p-4 text-[20px] rounded">@todo.Title</div>
-                <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="p-4 hover:bg-white hover:bg-opacity-10"><img src="icons/trash-can.png" class="size-6" /></button>
-        </div>
-        <partial name="_DeletePartial" model="@todo" />
-    }
-    </div>
+            <div class="bg-[#253d73] flex justify-between mb-3 rounded items-center flex-wrap text-justify">
+                <span id="todo-title" class="text-[20px] p-4">@todo.Title</span>
+                <div>
+                <button data-modal-target="delete-modal-@todo.Id" data-modal-toggle="delete-modal-@todo.Id" class="pb-5 pt-5 pr-3 pl-3 hover:bg-white hover:bg-opacity-10"><img src="icons/trash-can.png" class="size-6" /></button>
+                    <button id="edit-modal-@todo.Id" class="edit-btn pb-5 pt-5 pr-3 pl-3 hover:bg-white hover:bg-opacity-10"><img src="icons/edit.png" class="size-6" /></button>
+                </div>
+            </div>
+            <partial name="_DeletePartial" model="@todo" />
+        }
 </div>
 
 
