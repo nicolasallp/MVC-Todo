@@ -1,7 +1,7 @@
 ﻿@using mvc_todo.Controllers
 @model Todo
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Todo list";
     IEnumerable<Todo> todoList = TodoController._db.Todos;
 }
 
@@ -22,11 +22,11 @@
         @foreach (Todo todo in todoList)
         {
             <form method="post" asp-controller="Todo" asp-action="Edit" asp-route-id="@todo.Id" class="bg-[#253d73] flex justify-between mb-3 rounded items-center flex-wrap text-justify">
-            <span id="todo-title" class="text-[20px] p-4"><input asp-for="Title" value="@todo.Title" class="hidden bg-[#1a294a] border-0 outline-0 rounded w-full text-[18px] text-gray-200 placeholder-opacity-50 font-segoe" type="text" />@todo.Title</span>
+            <span class="text-[20px] p-4"><input asp-for="Title" value="@todo.Title" class="hidden bg-[#1a294a] border-0 outline-0 rounded w-full text-[18px] text-gray-200 placeholder-opacity-50 font-segoe" type="text" /><span>@todo.Title</span></span>
                 <div>
                     <button type="button" data-modal-target="delete-modal-@todo.Id" data-modal-toggle="delete-modal-@todo.Id" class="pb-5 pt-5 pr-3 pl-3 hover:bg-white hover:bg-opacity-10"><img src="icons/trash-can.png" class="size-6" /></button>
                     <button type="button" class="edit-btn pb-5 pt-5 pr-3 pl-3 hover:bg-white hover:bg-opacity-10"><img src="icons/edit.png" class="size-6" /></button>
-                    <button type="submit" class="hidden edit-btn pb-5 pt-5 pr-3 pl-3 bg-white"><img src="icons/check.png" class="size-6" /></button>
+                    <button type="submit" class="hidden pb-5 pt-5 pr-3 pl-3 bg-white"><img src="icons/check.png" class="size-6" /></button>
                 </div>
             </form>
             <partial name="_DeletePartial" model="@todo" />
